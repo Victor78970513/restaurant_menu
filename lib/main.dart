@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: 'home',
       routes: {
-        'home': (context) => LoginScreen(),
+        'home': (context) => HomeScreen(),
       },
     );
   }
