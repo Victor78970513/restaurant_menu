@@ -1,36 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant_menu/bloc/platos/platos_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    context.read<PlatosBloc>().add(OnGetAllPlatos());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff1B1D22),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                CustomIconButton(
-                    icon: FontAwesomeIcons.masksTheater, route: 'shows'),
-                Text(
-                  'Peña-Res',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600),
+    return BlocBuilder<PlatosBloc, PlatosState>(
+      builder: (context, state) {
+        print(' PLATOS: ${state.platos}');
+        return Scaffold(
+          backgroundColor: const Color(0xff1B1D22),
+          body: SafeArea(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    CustomIconButton(
+                        icon: FontAwesomeIcons.masksTheater, route: 'shows'),
+                    Text(
+                      'Peña-Res',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    CustomIconButton(
+                        icon: FontAwesomeIcons.locationDot, route: 'location'),
+                  ],
                 ),
-                CustomIconButton(
-                    icon: FontAwesomeIcons.locationDot, route: 'location'),
+                const SizedBox(height: 19),
+                const SearchContainer(),
+                const SizedBox(height: 19),
+                state.platos.isEmpty
+                    ? CircularProgressIndicator()
+                    : Text(
+                        'Hay datos',
+                        style: TextStyle(color: Colors.white),
+                      )
               ],
             ),
-            const SizedBox(height: 19),
-            const SearchContainer(),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

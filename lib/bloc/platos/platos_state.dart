@@ -22,5 +22,5 @@ class PlatosState extends Equatable {
       );
 
   @override
-  List<Object> get props => [platos];
+  List<Object> get props => [loading, platos, error];
 }
