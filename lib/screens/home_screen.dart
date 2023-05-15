@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:restaurant_menu/bloc/food/food_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final platos = BlocProvider.of<FoodBloc>(context);
     return Scaffold(
       backgroundColor: const Color(0xff1B1D22),
       body: SafeArea(
@@ -49,7 +47,6 @@ class CustomIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final plato = BlocProvider.of<FoodBloc>(context);
     return IconButton(
       onPressed: () {
         Navigator.pushNamed(context, route);
