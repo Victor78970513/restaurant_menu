@@ -1,6 +1,10 @@
+// To parse this JSON data, do
+//
+//     final platosModel = platosModelFromMap(jsonString);
+
 import 'dart:convert';
 
-class PlatoResponse {
+class PlatosModel {
   final int idComida;
   final String nombre;
   final String descripcion;
@@ -8,7 +12,7 @@ class PlatoResponse {
   final int idSeccion;
   final String imagen;
 
-  PlatoResponse({
+  PlatosModel({
     required this.idComida,
     required this.nombre,
     required this.descripcion,
@@ -17,12 +21,12 @@ class PlatoResponse {
     required this.imagen,
   });
 
-  factory PlatoResponse.fromJson(String str) =>
-      PlatoResponse.fromMap(json.decode(str));
+  factory PlatosModel.fromJson(String str) =>
+      PlatosModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory PlatoResponse.fromMap(Map<String, dynamic> json) => PlatoResponse(
+  factory PlatosModel.fromMap(Map<String, dynamic> json) => PlatosModel(
         idComida: json["id_comida"],
         nombre: json["nombre"],
         descripcion: json["descripcion"],
@@ -40,9 +44,3 @@ class PlatoResponse {
         "imagen": imagen,
       };
 }
-
-List<PlatoResponse> platosFromJson(String str) => List<PlatoResponse>.from(
-    json.decode(str).map((x) => PlatoResponse.fromMap(x)));
-
-String platosToJson(List<PlatoResponse> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
