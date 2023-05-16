@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:restaurant_menu/bloc/platos/platos_bloc.dart';
+import 'package:restaurant_menu/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<PlatosBloc, PlatosState>(
       builder: (context, state) {
-        print(' PLATOS: ${state.platos}');
+        print(state.platos);
         return Scaffold(
           backgroundColor: const Color(0xff1B1D22),
           body: SafeArea(
@@ -30,25 +31,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: const [
                     CustomIconButton(
                         icon: FontAwesomeIcons.masksTheater, route: 'shows'),
-                    Text(
-                      'Peña-Res',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600),
-                    ),
+                    Text('Peña-Res',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600)),
                     CustomIconButton(
-                        icon: FontAwesomeIcons.locationDot, route: 'location'),
+                        icon: FontAwesomeIcons.locationDot, route: 'location')
                   ],
                 ),
                 const SizedBox(height: 19),
                 const SearchContainer(),
                 const SizedBox(height: 19),
+                // Plato(),
                 state.platos.isEmpty
-                    ? CircularProgressIndicator()
-                    : Text(
-                        'Hay datos',
-                        style: TextStyle(color: Colors.white),
+                    ? const CircularProgressIndicator()
+                    : Column(
+                        children: [
+                          const SectionHeader(titulo: 'titulo'),
+                          Container(
+                            height: 110,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: state.platos.length,
+                                itemBuilder: (context, index) {
+                                  final texto = state.platos[index];
+                                  return Plato();
+                                }),
+                          ),
+                        ],
                       )
               ],
             ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CustomNavigationBar extends StatelessWidget {
+  const CustomNavigationBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final navegacionModel = Provider.of<Navegacion>(context);
@@ -23,7 +25,7 @@ class CustomNavigationBar extends StatelessWidget {
             backgroundColor: Color(0xff272B2D),
             icon: CustomItem(
               icon: Icons.home_outlined,
-              text: 'Profile',
+              text: 'Home',
             ),
             label: '',
           ),
@@ -31,14 +33,14 @@ class CustomNavigationBar extends StatelessWidget {
               backgroundColor: Color(0xff272B2D),
               icon: CustomItem(
                 icon: Icons.dining_sharp,
-                text: 'Profile',
+                text: '  Dish',
               ),
               label: ''),
           BottomNavigationBarItem(
               backgroundColor: Color(0xff272B2D),
               icon: CustomItem(
                 icon: Icons.table_bar,
-                text: 'Profile',
+                text: ' Table',
               ),
               label: ''),
           BottomNavigationBarItem(
@@ -61,7 +63,7 @@ class Navegacion extends ChangeNotifier {
   set paginaActual(int valor) {
     _paginaActual = valor;
     _pageController.animateToPage(valor,
-        duration: Duration(milliseconds: 250), curve: Curves.easeOut);
+        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
     notifyListeners();
   }
 
