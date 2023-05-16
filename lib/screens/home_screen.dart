@@ -37,29 +37,95 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 24,
                             fontWeight: FontWeight.w600)),
                     CustomIconButton(
-                        icon: FontAwesomeIcons.locationDot, route: 'location')
+                        icon: FontAwesomeIcons.locationDot, route: 'loading')
                   ],
                 ),
                 const SizedBox(height: 19),
                 const SearchContainer(),
                 const SizedBox(height: 19),
-                // Plato(),
                 state.platos.isEmpty
                     ? const CircularProgressIndicator()
-                    : Column(
-                        children: [
-                          const SectionHeader(titulo: 'titulo'),
-                          Container(
-                            height: 110,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: state.platos.length,
-                                itemBuilder: (context, index) {
-                                  final texto = state.platos[index];
-                                  return Plato();
-                                }),
+                    : Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SectionHeader(
+                                titulo: 'titulo',
+                                icon: FontAwesomeIcons.spoon,
+                              ),
+                              Container(
+                                height: 110,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: state.platos.length,
+                                    itemBuilder: (context, index) {
+                                      final texto = state.platos[index];
+                                      return Plato();
+                                    }),
+                              ),
+                              const SizedBox(height: 10),
+                              const SectionHeader(
+                                  titulo: 'BreakFast',
+                                  icon: FontAwesomeIcons.breadSlice),
+                              Container(
+                                height: 110,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: state.platos.length,
+                                    itemBuilder: (context, index) {
+                                      final texto = state.platos[index];
+                                      return Plato();
+                                    }),
+                              ),
+                              const SizedBox(height: 10),
+                              const SectionHeader(
+                                titulo: 'Lunch',
+                                icon: FontAwesomeIcons.briefcase,
+                              ),
+                              Container(
+                                height: 110,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: state.platos.length,
+                                    itemBuilder: (context, index) {
+                                      final texto = state.platos[index];
+                                      return Plato();
+                                    }),
+                              ),
+                              const SizedBox(height: 10),
+                              const SectionHeader(
+                                titulo: 'Dinner',
+                                icon: FontAwesomeIcons.cakeCandles,
+                              ),
+                              Container(
+                                height: 110,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: state.platos.length,
+                                    itemBuilder: (context, index) {
+                                      final texto = state.platos[index];
+                                      return Plato();
+                                    }),
+                              ),
+                              const SizedBox(height: 10),
+                              const SectionHeader(
+                                titulo: 'Desserts',
+                                icon: FontAwesomeIcons.cookie,
+                              ),
+                              Container(
+                                height: 110,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: state.platos.length,
+                                    itemBuilder: (context, index) {
+                                      final texto = state.platos[index];
+                                      return Plato();
+                                    }),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       )
               ],
             ),

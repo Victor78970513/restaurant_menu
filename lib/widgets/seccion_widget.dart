@@ -19,7 +19,7 @@ class Plato extends StatelessWidget {
               Colors.transparent,
             ],
             stops: [
-              0.4,
+              0.1,
               1,
             ]),
       ),
@@ -55,14 +55,19 @@ class Plato extends StatelessWidget {
 
 class SectionHeader extends StatelessWidget {
   final String titulo;
-  const SectionHeader({super.key, required this.titulo});
+  final IconData icon;
+  const SectionHeader({
+    super.key,
+    required this.titulo,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Container(
-          margin: const EdgeInsets.only(left: 16),
+          margin: const EdgeInsets.only(left: 16, top: 19, bottom: 19),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             gradient: const LinearGradient(
@@ -83,8 +88,8 @@ class SectionHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 15),
-        const Icon(
-          FontAwesomeIcons.spoon,
+        Icon(
+          icon,
           color: Colors.white,
           size: 36,
         )
