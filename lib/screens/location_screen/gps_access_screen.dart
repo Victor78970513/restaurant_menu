@@ -21,29 +21,6 @@ class GpsAccessScreen extends StatelessWidget {
   }
 }
 
-class _EnableGpsMessage extends StatelessWidget {
-  const _EnableGpsMessage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Image(image: AssetImage('assets/location_gif_2.gif')),
-          Text(
-            'Debe Activar la ubicacion',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _AccesButton extends StatelessWidget {
   const _AccesButton({super.key});
 
@@ -71,6 +48,29 @@ class _AccesButton extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _EnableGpsMessage extends StatelessWidget {
+  const _EnableGpsMessage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Image(image: AssetImage('assets/location_gif_2.gif')),
+          Text(
+            'Debe Activar la ubicacion',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
             ),
           ),
         ],

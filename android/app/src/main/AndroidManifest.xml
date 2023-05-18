@@ -1,11 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.restaurant_menu">
+
+    <!-- Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Mapas GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
    <application
         android:label="restaurant_menu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyARKfGY86Nw_dH087g9dYdWN2nP6oMVhMs"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyARKfGY86Nw_dH087g9dYdWN2nP6oMVhMs"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

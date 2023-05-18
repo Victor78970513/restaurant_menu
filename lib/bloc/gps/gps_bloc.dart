@@ -14,17 +14,19 @@ class GpsBloc extends Bloc<GpsEvent, GpsState> {
       : super(const GpsState(
             isGpsEnabled: false, isGpsPermissionGranted: false)) {
     on<GpsAndPermissionEvent>((event, emit) => emit(state.copyWith(
-          isGpsEnable: event.isGpsEnable,
+          isGpsEnabled: event.isGpsEnabled,
           isGpsPermissionGranted: event.isGpsPermissionGranted,
         )));
     _init();
   }
 
   Future<void> _init() async {
-    final gpsInitStatus =
-        await Future.wait([_checkGpsStatus(), _isPermissionGrantend()]);
+    final gpsInitStatus = await Future.wait([
+      _checkGpsStatus(),
+      _isPermissionGrantend(),
+    ]);
     add(GpsAndPermissionEvent(
-        isGpsEnable: gpsInitStatus[0],
+        isGpsEnabled: gpsInitStatus[0],
         isGpsPermissionGranted: gpsInitStatus[1]));
   }
 
@@ -34,7 +36,7 @@ class GpsBloc extends Bloc<GpsEvent, GpsState> {
         Geolocator.getServiceStatusStream().listen((event) {
       final isEnabled = event.index == 1 ? true : false;
       add(GpsAndPermissionEvent(
-          isGpsEnable: isEnabled,
+          isGpsEnabled: isEnabled,
           isGpsPermissionGranted: state.isGpsPermissionGranted));
     });
     return isEnable;
@@ -51,14 +53,14 @@ class GpsBloc extends Bloc<GpsEvent, GpsState> {
     switch (status) {
       case PermissionStatus.granted:
         add(GpsAndPermissionEvent(
-            isGpsEnable: state.isGpsEnabled, isGpsPermissionGranted: true));
+            isGpsEnabled: state.isGpsEnabled, isGpsPermissionGranted: true));
         break;
       case PermissionStatus.denied:
       case PermissionStatus.restricted:
       case PermissionStatus.limited:
       case PermissionStatus.permanentlyDenied:
         add(GpsAndPermissionEvent(
-            isGpsEnable: state.isGpsEnabled, isGpsPermissionGranted: false));
+            isGpsEnabled: state.isGpsEnabled, isGpsPermissionGranted: false));
         openAppSettings();
     }
   }

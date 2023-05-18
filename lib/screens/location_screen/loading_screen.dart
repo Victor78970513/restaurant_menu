@@ -6,10 +6,12 @@ import 'package:restaurant_menu/screens/location_screen/locationscreens.dart';
 class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GpsBloc, GpsState>(
-      builder: (context, state) {
-        return state.isAllGranted ? LocationScreen() : GpsAccessScreen();
-      },
+    return Scaffold(
+      body: BlocBuilder<GpsBloc, GpsState>(
+        builder: (context, state) {
+          return state.isAllGranted ? LocationScreen() : GpsAccessScreen();
+        },
+      ),
     );
   }
 }
