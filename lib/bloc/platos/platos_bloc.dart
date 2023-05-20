@@ -51,7 +51,7 @@ class PlatosBloc extends Bloc<PlatosEvent, PlatosState> {
     on<OnGetLunchEvent>((event, emit) async {
       try {
         emit(state.copyWith(loading: true));
-        final resp = await _breakfast.getLunch();
+        final resp = await _lunch.getLunch();
         emit(state.copyWith(loading: false, lunch: resp));
       } catch (error) {
         print(' EL ERROR ES LUNCH: $error');
