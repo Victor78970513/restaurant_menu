@@ -9,15 +9,52 @@ part 'platos_state.dart';
 
 class PlatosBloc extends Bloc<PlatosEvent, PlatosState> {
   late PlatosRepository _platosRepository;
-  List<PlatosModel> foods = [];
+  late PlatosRepository _breakfast;
+  late PlatosRepository _lunch;
+
   PlatosBloc() : super(const PlatosState()) {
     _platosRepository = PlatosRepositoryImp();
+    _breakfast = PlatosRepositoryImp();
+    _lunch = PlatosRepositoryImp();
+
     on<OnGetAllPlatos>((event, emit) async {
       try {
         emit(state.copyWith(loading: true));
         final resp = await _platosRepository.getAllPlatos();
         emit(state.copyWith(loading: false, platos: resp));
       } catch (error) {
+        print(' EL ERROR ES ALLPLATOS: $error');
+        try {
+          emit(state.copyWith(
+              loading: false, error: (error as dynamic)['message']));
+        } catch (err) {
+          emit(state.copyWith(loading: false, error: 'Ocurrio un error'));
+        }
+      }
+    });
+    on<OnGetBreakFastEvent>((event, emit) async {
+      try {
+        emit(state.copyWith(loading: true));
+        final resp = await _breakfast.getBreakFast();
+        emit(state.copyWith(loading: false, breakfast: resp));
+      } catch (error) {
+        print(' EL ERROR ES BREAKFAST: $error');
+        try {
+          emit(state.copyWith(
+              loading: false, error: (error as dynamic)['message']));
+        } catch (err) {
+          emit(state.copyWith(loading: false, error: 'Ocurrio un error'));
+        }
+      }
+    });
+
+    on<OnGetLunchEvent>((event, emit) async {
+      try {
+        emit(state.copyWith(loading: true));
+        final resp = await _breakfast.getLunch();
+        emit(state.copyWith(loading: false, lunch: resp));
+      } catch (error) {
+        print(' EL ERROR ES LUNCH: $error');
         try {
           emit(state.copyWith(
               loading: false, error: (error as dynamic)['message']));

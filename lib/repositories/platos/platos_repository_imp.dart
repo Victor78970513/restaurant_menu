@@ -15,4 +15,22 @@ class PlatosRepositoryImp extends PlatosRepository {
         .map((element) => PlatosModel.fromJson(element))
         .toList();
   }
+
+  @override
+  Future<List<PlatosModel>> getBreakFast() async {
+    final response = await Dio().get('${Constants.apiUrl}/breakfast');
+    if (response.statusCode != 200) throw Exception(response.statusMessage);
+    return ((response.data) as List)
+        .map((element) => PlatosModel.fromJson(element))
+        .toList();
+  }
+
+  @override
+  Future<List<PlatosModel>> getLunch() async {
+    final response = await Dio().get('${Constants.apiUrl}/lunch');
+    if (response.statusCode != 200) throw Exception(response.statusMessage);
+    return ((response.data) as List)
+        .map((element) => PlatosModel.fromJson(element))
+        .toList();
+  }
 }

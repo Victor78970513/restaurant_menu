@@ -8,3 +8,11 @@ abstract class PlatosEvent extends Equatable {
 }
 
 class OnGetAllPlatos extends PlatosEvent {}
+
+class OnGetBreakFastEvent extends PlatosEvent {}
+
+class OnGetLunchEvent extends PlatosEvent {}
+
+class OnGetDinnerEvent extends PlatosEvent {}
+
+class OnGetDrinksEvent extends PlatosEvent {}

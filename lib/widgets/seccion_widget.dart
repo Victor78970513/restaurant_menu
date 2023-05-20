@@ -1,8 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant_menu/bloc/blocs.dart';
+import 'package:restaurant_menu/models/models.dart';
+
+class BreafFastPlato extends StatefulWidget {
+  const BreafFastPlato({super.key});
+
+  @override
+  State<BreafFastPlato> createState() => _BreafFastPlatoState();
+}
+
+class _BreafFastPlatoState extends State<BreafFastPlato> {
+  @override
+  void initState() {
+    context.read<PlatosBloc>().add(OnGetBreakFastEvent());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PlatosBloc, PlatosState>(
+      builder: (context, state) {
+        return state.breakfast.isEmpty
+            ? const CircularProgressIndicator()
+            : Column(
+                children: [
+                  const SectionHeader(
+                    titulo: 'BreakFast',
+                    icon: FontAwesomeIcons.a,
+                  ),
+                  Container(
+                    height: 110,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.breakfast.length,
+                      itemBuilder: (context, index) {
+                        final plato = state.breakfast[index];
+                        return Plato(
+                          plato: plato,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+      },
+    );
+  }
+}
+
+class AllSeccionPLato extends StatefulWidget {
+  const AllSeccionPLato({super.key});
+
+  @override
+  State<AllSeccionPLato> createState() => _AllSeccionPLatoState();
+}
+
+class _AllSeccionPLatoState extends State<AllSeccionPLato> {
+  @override
+  void initState() {
+    context.read<PlatosBloc>().add(OnGetAllPlatos());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PlatosBloc, PlatosState>(
+      builder: (context, state) {
+        return state.platos.isEmpty
+            ? const CircularProgressIndicator()
+            : Column(
+                children: [
+                  const SectionHeader(
+                    titulo: 'All',
+                    icon: FontAwesomeIcons.a,
+                  ),
+                  Container(
+                    height: 110,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.platos.length,
+                      itemBuilder: (context, index) {
+                        final plato = state.platos[index];
+                        return Plato(
+                          plato: plato,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+      },
+    );
+  }
+}
 
 class Plato extends StatelessWidget {
-  const Plato({super.key});
+  final PlatosModel plato;
+  const Plato({super.key, required this.plato});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +124,11 @@ class Plato extends StatelessWidget {
       // height: 110,
       child: Column(
         children: [
-          const Text(
-            'Charquekan',
-            style: TextStyle(
+          Text(
+            plato.nombre!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
               color: Colors.white,
               letterSpacing: 1.59,
               fontSize: 10,
@@ -83,7 +181,7 @@ class SectionHeader extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
             child: Text(
               titulo,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
         ),
