@@ -1,8 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:restaurant_menu/bloc/blocs.dart';
 import 'package:restaurant_menu/models/models.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:restaurant_menu/utils/constants.dart';
+
+class LunchPlato extends StatefulWidget {
+  const LunchPlato({super.key});
+
+  @override
+  State<LunchPlato> createState() => _LunchPlatoState();
+}
+
+class _LunchPlatoState extends State<LunchPlato> {
+  @override
+  void initState() {
+    context.read<PlatosBloc>().add(OnGetLunchEvent());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PlatosBloc, PlatosState>(
+      builder: (context, state) {
+        return state.lunch.isEmpty
+            ? const CircularProgressIndicator()
+            : Column(
+                children: [
+                  const SectionHeader(
+                    titulo: 'Lunch',
+                    icono: Constants.lunch_chicken,
+                  ),
+                  Container(
+                    height: 110,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.lunch.length,
+                      itemBuilder: (context, index) {
+                        final plato = state.lunch[index];
+                        return Plato(
+                          plato: plato,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+      },
+    );
+  }
+}
 
 class BreafFastPlato extends StatefulWidget {
   const BreafFastPlato({super.key});
@@ -28,7 +75,7 @@ class _BreafFastPlatoState extends State<BreafFastPlato> {
                 children: [
                   const SectionHeader(
                     titulo: 'BreakFast',
-                    icon: FontAwesomeIcons.a,
+                    icono: Constants.breakfast_coffe,
                   ),
                   Container(
                     height: 110,
@@ -74,7 +121,7 @@ class _AllSeccionPLatoState extends State<AllSeccionPLato> {
                 children: [
                   const SectionHeader(
                     titulo: 'All',
-                    icon: FontAwesomeIcons.a,
+                    icono: Constants.fork_knife,
                   ),
                   Container(
                     height: 110,
@@ -153,11 +200,13 @@ class Plato extends StatelessWidget {
 
 class SectionHeader extends StatelessWidget {
   final String titulo;
-  final IconData icon;
+  // final IconData icon;
+  final String icono;
   const SectionHeader({
     super.key,
     required this.titulo,
-    required this.icon,
+    required this.icono,
+    // required this.icon,
   });
 
   @override
@@ -186,8 +235,8 @@ class SectionHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 15),
-        Icon(
-          icon,
+        Iconify(
+          icono,
           color: Colors.white,
           size: 36,
         )

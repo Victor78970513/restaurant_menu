@@ -31,14 +31,26 @@ class HomeScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     AllSeccionPLato(),
                     BreafFastPlato(),
+                    LunchPlato(),
                   ],
                 ),
               ),
             )
+            // Expanded(
+            //   child: ListView.builder(
+            //       itemCount: 1,
+            //       itemBuilder: (context, index) {
+            //         return Column(
+            //           children: [
+            //             AllSeccionPLato(),
+            //             BreafFastPlato(),
+            //           ],
+            //         );
+            //       }),
+            // )
           ],
         ),
       ),
