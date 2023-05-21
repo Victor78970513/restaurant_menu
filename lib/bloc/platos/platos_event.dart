@@ -15,4 +15,6 @@ class OnGetLunchEvent extends PlatosEvent {}
 
 class OnGetDinnerEvent extends PlatosEvent {}
 
-class OnGetDrinksEvent extends PlatosEvent {}
+class OnGetDrinkEvent extends PlatosEvent {}
+
+class OnGetDessertEvent extends PlatosEvent {}

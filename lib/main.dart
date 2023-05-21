@@ -18,11 +18,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => LocationBloc()),
         BlocProvider(create: (context) => GpsBloc()),
         BlocProvider(
-          create: (context) => MapBloc(
-            locationBloc: BlocProvider.of<LocationBloc>(context),
-            trafficService: TrafficService(),
-          ),
-        ),
+            create: (context) => MapBloc(
+                locationBloc: BlocProvider.of<LocationBloc>(context),
+                trafficService: TrafficService())),
+        BlocProvider(create: (context) => ShowBloc())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,3 +1,4 @@
+export 'package:restaurant_menu/widgets/show_widget.dart';
 export 'package:restaurant_menu/widgets/custom_button_widget.dart';
 export 'package:restaurant_menu/widgets/seccion_widget.dart';
 export 'package:restaurant_menu/widgets/custom_navigationbar_widget.dart';

@@ -1,47 +1,142 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant_menu/bloc/blocs.dart';
+import 'package:restaurant_menu/utils/constants.dart';
 import 'package:restaurant_menu/widgets/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final scrollController1 = ScrollController();
+  final scrollController2 = ScrollController();
+  final scrollController3 = ScrollController();
+  final scrollController4 = ScrollController();
+  final scrollController5 = ScrollController();
+  final scrollController6 = ScrollController();
+  void onListen() => setState(() {});
+  void addListeners() {
+    scrollController1.addListener(onListen);
+    scrollController2.addListener(onListen);
+    scrollController3.addListener(onListen);
+    scrollController4.addListener(onListen);
+    scrollController5.addListener(onListen);
+    scrollController6.addListener(onListen);
+  }
+
+  void removeListeners() {
+    scrollController1.removeListener(onListen);
+    scrollController2.removeListener(onListen);
+    scrollController3.removeListener(onListen);
+    scrollController4.removeListener(onListen);
+    scrollController5.removeListener(onListen);
+    scrollController6.removeListener(onListen);
+  }
+
+  @override
+  void initState() {
+    addListeners();
+    context.read<PlatosBloc>()
+      ..add(OnGetAllPlatos())
+      ..add(OnGetBreakFastEvent())
+      ..add(OnGetLunchEvent())
+      ..add(OnGetDinnerEvent())
+      ..add(OnGetDessertEvent())
+      ..add(OnGetDrinkEvent());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    removeListeners();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff1B1D22),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                CustomIconButton(
-                    icon: FontAwesomeIcons.masksTheater, route: 'show'),
-                Text('Peña-Res',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600)),
-                CustomIconButton(
-                    icon: FontAwesomeIcons.locationDot, route: 'loading')
-              ],
-            ),
-            const SizedBox(height: 19),
-            const SearchContainer(),
-            const SizedBox(height: 19),
-            Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
+    return BlocBuilder<PlatosBloc, PlatosState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: const Color(0xff1B1D22),
+          body: SafeArea(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const [
-                    AllSeccionPLato(),
-                    BreafFastPlato(),
-                    LunchPlato(),
+                    CustomIconButton(
+                        icon: FontAwesomeIcons.masksTheater, route: 'show'),
+                    Text('Peña-Res',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600)),
+                    CustomIconButton(
+                        icon: FontAwesomeIcons.locationDot, route: 'loading')
                   ],
                 ),
-              ),
-            )
-          ],
-        ),
-      ),
+                const SizedBox(height: 19),
+                const SearchContainer(),
+                const SizedBox(height: 19),
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        SeccionPlato(
+                          scrollController: scrollController1,
+                          platos: state.platos,
+                          header: const SectionHeader(
+                            titulo: 'All',
+                            icono: Constants.forkKnife,
+                          ),
+                        ),
+                        SeccionPlato(
+                          scrollController: scrollController2,
+                          platos: state.breakfast,
+                          header: const SectionHeader(
+                            titulo: 'BreakFast',
+                            icono: Constants.breakfastCoffe,
+                          ),
+                        ),
+                        SeccionPlato(
+                          scrollController: scrollController3,
+                          platos: state.lunch,
+                          header: const SectionHeader(
+                            titulo: 'Lunch',
+                            icono: Constants.lunchChicken,
+                          ),
+                        ),
+                        SeccionPlato(
+                            scrollController: scrollController4,
+                            platos: state.dinner,
+                            header: const SectionHeader(
+                                titulo: 'Dinner', icono: Constants.dinnerSoup)),
+                        SeccionPlato(
+                            scrollController: scrollController5,
+                            platos: state.dessert,
+                            header: const SectionHeader(
+                                titulo: 'Dessert',
+                                icono: Constants.dessertIceCream)),
+                        SeccionPlato(
+                            scrollController: scrollController6,
+                            platos: state.drinks,
+                            header: const SectionHeader(
+                                titulo: 'Drinks',
+                                icono: Constants.drinkCocoNut)),
+                        const SizedBox(height: 20)
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

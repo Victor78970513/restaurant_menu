@@ -7,8 +7,10 @@ class PlatosState extends Equatable {
   final List<PlatosModel> lunch;
   final List<PlatosModel> dinner;
   final List<PlatosModel> drinks;
+  final List<PlatosModel> dessert;
   final String error;
   const PlatosState({
+    this.dessert = const [],
     this.lunch = const [],
     this.dinner = const [],
     this.drinks = const [],
@@ -19,6 +21,7 @@ class PlatosState extends Equatable {
   });
 
   PlatosState copyWith({
+    List<PlatosModel>? dessert,
     List<PlatosModel>? platos,
     List<PlatosModel>? breakfast,
     List<PlatosModel>? lunch,
@@ -28,6 +31,7 @@ class PlatosState extends Equatable {
     String? error,
   }) =>
       PlatosState(
+        dessert: dessert ?? this.dessert,
         lunch: lunch ?? this.lunch,
         dinner: dinner ?? this.dinner,
         drinks: drinks ?? this.drinks,
@@ -39,5 +43,5 @@ class PlatosState extends Equatable {
 
   @override
   List<Object> get props =>
-      [loading, platos, error, breakfast, lunch, dinner, drinks];
+      [loading, platos, error, breakfast, lunch, dinner, drinks, dessert];
 }

@@ -8,7 +8,7 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final navegacionModel = Provider.of<Navegacion>(context);
     return Container(
-      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      padding: const EdgeInsets.only(top: 10, left: 0, right: 0),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
@@ -85,14 +85,14 @@ class CustomItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final posicion = Provider.of<Navegacion>(context);
-    List<Color> activeColor = [
+    List<Color> activeColor = const [
       Color(0xffFEA04D),
       Color(0xffFE564D),
     ];
-    List<Color> deactiveColor = [Color(0xff272B2D), Color(0xff272B2D)];
+    List<Color> deactiveColor = const [Color(0xff272B2D), Color(0xff272B2D)];
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 7),
-      width: 80,
+      width: 90,
       height: 36,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -106,19 +106,19 @@ class CustomItem extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: 24,
+            size: 26,
             color: posicion.paginaActual == index
                 ? Colors.black
-                : Color(0xffD1C7C7),
+                : const Color(0xffD1C7C7),
           ),
           Text(
             text,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 15,
               fontWeight: FontWeight.w600,
               color: posicion.paginaActual == index
                   ? Colors.black
-                  : Color(0xffD1C7C7),
+                  : const Color(0xffD1C7C7),
             ),
           ),
         ],
