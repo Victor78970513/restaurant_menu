@@ -28,17 +28,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
-          // textTheme: GoogleFonts.poppinsTextTheme(
-          //   Theme.of(context).textTheme,
-          // ),
         ),
         title: 'Material App',
-        // home: QuispeScreen()
         initialRoute: 'tabs',
         routes: {
           'tabs': (_) => TabsScreen(),
           'location': (_) => LocationScreen(),
           'loading': (_) => LoadingScreen(),
+          'show': (_) => ShowScreen(),
         },
       ),
     );

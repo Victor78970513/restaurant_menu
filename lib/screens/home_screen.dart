@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
                 CustomIconButton(
-                    icon: FontAwesomeIcons.masksTheater, route: 'shows'),
+                    icon: FontAwesomeIcons.masksTheater, route: 'show'),
                 Text('Peña-Res',
                     style: TextStyle(
                         color: Colors.white,
@@ -39,18 +39,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             )
-            // Expanded(
-            //   child: ListView.builder(
-            //       itemCount: 1,
-            //       itemBuilder: (context, index) {
-            //         return Column(
-            //           children: [
-            //             AllSeccionPLato(),
-            //             BreafFastPlato(),
-            //           ],
-            //         );
-            //       }),
-            // )
           ],
         ),
       ),

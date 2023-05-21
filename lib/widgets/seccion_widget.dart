@@ -13,10 +13,25 @@ class LunchPlato extends StatefulWidget {
 }
 
 class _LunchPlatoState extends State<LunchPlato> {
+  final scrollController = ScrollController();
+
+  void onListen() {
+    setState(() {
+      print('SCROLL: ${scrollController.offset}');
+    });
+  }
+
   @override
   void initState() {
+    scrollController.addListener(onListen);
     context.read<PlatosBloc>().add(OnGetLunchEvent());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(onListen);
+    super.dispose();
   }
 
   @override
@@ -34,12 +49,23 @@ class _LunchPlatoState extends State<LunchPlato> {
                   Container(
                     height: 110,
                     child: ListView.builder(
+                      controller: scrollController,
                       scrollDirection: Axis.horizontal,
                       itemCount: state.lunch.length,
                       itemBuilder: (context, index) {
                         final plato = state.lunch[index];
-                        return Plato(
-                          plato: plato,
+                        final itemPositionOffset = index * 130;
+                        final difference =
+                            scrollController.offset - itemPositionOffset;
+                        final percent = 1 - (difference / 110);
+                        double opacity = percent;
+                        if (opacity > 1.0) opacity = 1.0;
+                        if (opacity < 0.0) opacity = 0.0;
+                        return Opacity(
+                          opacity: opacity,
+                          child: Plato(
+                            plato: plato,
+                          ),
                         );
                       },
                     ),
@@ -59,10 +85,22 @@ class BreafFastPlato extends StatefulWidget {
 }
 
 class _BreafFastPlatoState extends State<BreafFastPlato> {
+  final scrollcontroller = ScrollController();
+  void onListen() {
+    setState(() {});
+  }
+
   @override
   void initState() {
+    scrollcontroller.addListener(onListen);
     context.read<PlatosBloc>().add(OnGetBreakFastEvent());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollcontroller.removeListener(onListen);
+    super.dispose();
   }
 
   @override
@@ -80,12 +118,23 @@ class _BreafFastPlatoState extends State<BreafFastPlato> {
                   Container(
                     height: 110,
                     child: ListView.builder(
+                      controller: scrollcontroller,
                       scrollDirection: Axis.horizontal,
                       itemCount: state.breakfast.length,
                       itemBuilder: (context, index) {
                         final plato = state.breakfast[index];
-                        return Plato(
-                          plato: plato,
+                        final itemPositionOffset = index * 130;
+                        final difference =
+                            scrollcontroller.offset - itemPositionOffset;
+                        final percent = 1 - (difference / 110);
+                        double opacity = percent;
+                        if (opacity > 1.0) opacity = 1.0;
+                        if (opacity < 0.0) opacity = 0.0;
+                        return Opacity(
+                          opacity: opacity,
+                          child: Plato(
+                            plato: plato,
+                          ),
                         );
                       },
                     ),
@@ -105,10 +154,22 @@ class AllSeccionPLato extends StatefulWidget {
 }
 
 class _AllSeccionPLatoState extends State<AllSeccionPLato> {
+  final scrollController = ScrollController();
+  void onListen() {
+    setState(() {});
+  }
+
   @override
   void initState() {
+    scrollController.addListener(onListen);
     context.read<PlatosBloc>().add(OnGetAllPlatos());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(onListen);
+    super.dispose();
   }
 
   @override
@@ -126,12 +187,23 @@ class _AllSeccionPLatoState extends State<AllSeccionPLato> {
                   Container(
                     height: 110,
                     child: ListView.builder(
+                      controller: scrollController,
                       scrollDirection: Axis.horizontal,
                       itemCount: state.platos.length,
                       itemBuilder: (context, index) {
                         final plato = state.platos[index];
-                        return Plato(
-                          plato: plato,
+                        final itemPositionOffset = index * 130;
+                        final difference =
+                            scrollController.offset - itemPositionOffset;
+                        final percent = 1 - (difference / 110);
+                        double opacity = percent;
+                        if (opacity > 1.0) opacity = 1.0;
+                        if (opacity < 0.0) opacity = 0.0;
+                        return Opacity(
+                          opacity: opacity,
+                          child: Plato(
+                            plato: plato,
+                          ),
                         );
                       },
                     ),

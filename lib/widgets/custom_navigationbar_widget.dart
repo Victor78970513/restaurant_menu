@@ -17,37 +17,42 @@ class CustomNavigationBar extends StatelessWidget {
         color: Color(0xff272B2D),
       ),
       child: BottomNavigationBar(
+        elevation: 0,
         currentIndex: navegacionModel.paginaActual,
         onTap: (i) => navegacionModel.paginaActual = i,
         selectedItemColor: Colors.red,
         items: const [
           BottomNavigationBarItem(
-            backgroundColor: Color(0xff272B2D),
+            backgroundColor: Colors.transparent,
             icon: CustomItem(
+              index: 0,
               icon: Icons.home_outlined,
               text: 'Home',
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-              backgroundColor: Color(0xff272B2D),
+              backgroundColor: Colors.transparent,
               icon: CustomItem(
+                index: 1,
                 icon: Icons.dining_sharp,
                 text: '  Dish',
               ),
               label: ''),
           BottomNavigationBarItem(
-              backgroundColor: Color(0xff272B2D),
+              backgroundColor: Colors.transparent,
               icon: CustomItem(
                 icon: Icons.table_bar,
                 text: ' Table',
+                index: 2,
               ),
               label: ''),
           BottomNavigationBarItem(
-              backgroundColor: Color(0xff272B2D),
+              backgroundColor: Colors.transparent,
               icon: CustomItem(
                 icon: Icons.person_outline_outlined,
                 text: 'Profile',
+                index: 3,
               ),
               label: ''),
         ],
@@ -58,7 +63,7 @@ class CustomNavigationBar extends StatelessWidget {
 
 class Navegacion extends ChangeNotifier {
   int _paginaActual = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   int get paginaActual => _paginaActual;
   set paginaActual(int valor) {
     _paginaActual = valor;
@@ -71,33 +76,50 @@ class Navegacion extends ChangeNotifier {
 }
 
 class CustomItem extends StatelessWidget {
+  final int index;
   final IconData icon;
   final String text;
 
-  const CustomItem({super.key, required this.icon, required this.text});
+  const CustomItem(
+      {super.key, required this.icon, required this.text, required this.index});
   @override
   Widget build(BuildContext context) {
+    final posicion = Provider.of<Navegacion>(context);
+    List<Color> activeColor = [
+      Color(0xffFEA04D),
+      Color(0xffFE564D),
+    ];
+    List<Color> deactiveColor = [Color(0xff272B2D), Color(0xff272B2D)];
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 7),
       width: 80,
       height: 36,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        gradient: const LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Color(0xffFEA04D),
-            Color(0xffFE564D),
-          ],
-        ),
+        gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors:
+                posicion.paginaActual == index ? activeColor : deactiveColor),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 24, color: Colors.black),
+          Icon(
+            icon,
+            size: 24,
+            color: posicion.paginaActual == index
+                ? Colors.black
+                : Color(0xffD1C7C7),
+          ),
           Text(
             text,
-            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: posicion.paginaActual == index
+                  ? Colors.black
+                  : Color(0xffD1C7C7),
+            ),
           ),
         ],
       ),
