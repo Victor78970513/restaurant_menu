@@ -95,8 +95,11 @@ class Plato extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: const FadeInImage(
+                  height: 60,
+                  width: 90,
                   placeholder: AssetImage('assets/jar-loading.gif'),
                   image: AssetImage('assets/charque.jpg'),
+                  // image: NetworkImage(plato.imagen!),
                 ),
               ),
             )

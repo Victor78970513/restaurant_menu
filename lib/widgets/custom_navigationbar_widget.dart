@@ -8,7 +8,6 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final navegacionModel = Provider.of<Navegacion>(context);
     return Container(
-      padding: const EdgeInsets.only(top: 10, left: 0, right: 0),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
@@ -20,7 +19,6 @@ class CustomNavigationBar extends StatelessWidget {
         elevation: 0,
         currentIndex: navegacionModel.paginaActual,
         onTap: (i) => navegacionModel.paginaActual = i,
-        selectedItemColor: Colors.red,
         items: const [
           BottomNavigationBarItem(
             backgroundColor: Colors.transparent,
@@ -68,7 +66,7 @@ class Navegacion extends ChangeNotifier {
   set paginaActual(int valor) {
     _paginaActual = valor;
     _pageController.animateToPage(valor,
-        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+        duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
     notifyListeners();
   }
 

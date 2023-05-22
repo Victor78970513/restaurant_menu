@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          splashColor: Colors.orange,
           useMaterial3: true,
         ),
         title: 'Material App',

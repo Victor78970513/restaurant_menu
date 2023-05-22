@@ -64,9 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
           body: SafeArea(
             child: Column(
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
+                  children: [
                     CustomIconButton(
                         icon: FontAwesomeIcons.masksTheater, route: 'show'),
                     Text('Peña-Res',
