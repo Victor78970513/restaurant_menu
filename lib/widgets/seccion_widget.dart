@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu/models/models.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:restaurant_menu/screens/screens.dart';
 
 class SeccionPlato extends StatelessWidget {
   final ScrollController scrollController;
@@ -60,7 +61,12 @@ class Plato extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => print(plato.nombre),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DishDetailsScreen(plato: plato)));
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(

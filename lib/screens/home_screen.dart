@@ -154,9 +154,7 @@ class CustomIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        Navigator.pushNamed(context, route);
-      },
+      onPressed: () => Navigator.pushNamed(context, route),
       icon: Icon(
         icon,
         color: Colors.white,

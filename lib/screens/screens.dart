@@ -1,3 +1,4 @@
+export 'package:restaurant_menu/screens/dish_details/dish_details.dart';
 export 'package:restaurant_menu/screens/location_screen/location_screen.dart';
 export 'package:restaurant_menu/screens/tabs_screen.dart';
 export 'package:restaurant_menu/screens/dish_screen.dart';
