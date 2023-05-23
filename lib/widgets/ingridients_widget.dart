@@ -6,8 +6,9 @@ class IngridientsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 400,
       margin: const EdgeInsets.symmetric(horizontal: 5),
-      padding: const EdgeInsets.all(6),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
           color: Colors.grey, borderRadius: BorderRadius.circular(30)),
       height: 60,

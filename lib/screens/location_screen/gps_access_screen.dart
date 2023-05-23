@@ -6,7 +6,6 @@ class GpsAccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xff1B1D22),
       backgroundColor: const Color(0xff243141),
       body: Center(
         child: BlocBuilder<GpsBloc, GpsState>(

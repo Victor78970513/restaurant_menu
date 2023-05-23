@@ -59,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<PlatosBloc, PlatosState>(
       builder: (context, state) {
+        print(state.platos);
         return Scaffold(
-          backgroundColor: const Color(0xff1B1D22),
           body: SafeArea(
             child: Column(
               children: [

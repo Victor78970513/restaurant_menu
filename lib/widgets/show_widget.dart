@@ -14,7 +14,7 @@ class SeccionShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return shows.isEmpty
-        ? const CircularProgressIndicator()
+        ? const Center(child: CircularProgressIndicator())
         : SizedBox(
             child: ListView.builder(
               controller: scrollController,

@@ -17,7 +17,10 @@ class SeccionPlato extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return platos.isEmpty
-        ? const CircularProgressIndicator()
+        ? Container(
+            height: 100,
+            child: const Center(child: CircularProgressIndicator()),
+          )
         : Column(
             children: [
               header,

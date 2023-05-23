@@ -29,21 +29,13 @@ class _ShowScreenState extends State<ShowScreen> {
     return BlocBuilder<ShowBloc, ShowState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: const Color(0xff1B1D22),
           appBar: AppBar(
             leading: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                  size: 37,
-                )),
-            title: const Text(
-              'Shows',
-              style: TextStyle(color: Colors.white),
-            ),
+                icon: const Icon(Icons.arrow_back,
+                    color: Colors.white, size: 37)),
+            title: const Text('Shows', style: TextStyle(color: Colors.white)),
             centerTitle: true,
-            backgroundColor: Colors.transparent,
           ),
           body: Column(
             children: [

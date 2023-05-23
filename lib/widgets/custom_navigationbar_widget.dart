@@ -16,6 +16,7 @@ class CustomNavigationBar extends StatelessWidget {
         color: Color(0xff272B2D),
       ),
       child: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
         elevation: 0,
         currentIndex: navegacionModel.paginaActual,
         onTap: (i) => navegacionModel.paginaActual = i,
