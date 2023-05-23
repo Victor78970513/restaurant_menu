@@ -34,11 +34,13 @@ class CustomButtonWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 28, color: Colors.black),
+            icon != null
+                ? Icon(icon, size: 28, color: Colors.black)
+                : const SizedBox(),
             const SizedBox(width: 10),
             Text(
               text,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ],
         ),
