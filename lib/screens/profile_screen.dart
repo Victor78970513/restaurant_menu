@@ -47,19 +47,22 @@ class _PhotoProfile extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(100)),
           ),
         ),
-        const Row(
+        Row(
           children: [
-            Iconify(
+            const Iconify(
               Constants.profileIcon,
               size: 112,
               color: Color(0xff3C3C43),
             ),
-            Text(
-              'Hi, Victor',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.w400,
+            Container(
+              margin: const EdgeInsets.only(left: 50, bottom: 30),
+              child: const Text(
+                'Hi, Victor',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             )
           ],
