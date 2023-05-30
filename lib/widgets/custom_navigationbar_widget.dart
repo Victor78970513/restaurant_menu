@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant_menu/utils/constants.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({super.key});
@@ -16,6 +18,7 @@ class CustomNavigationBar extends StatelessWidget {
         color: Color(0xff272B2D),
       ),
       child: BottomNavigationBar(
+        useLegacyColorScheme: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         currentIndex: navegacionModel.paginaActual,
@@ -25,7 +28,7 @@ class CustomNavigationBar extends StatelessWidget {
             backgroundColor: Colors.transparent,
             icon: CustomItem(
               index: 0,
-              icon: Icons.home_outlined,
+              icon: Constants.homeNavbar,
               text: 'Home',
             ),
             label: '',
@@ -34,14 +37,14 @@ class CustomNavigationBar extends StatelessWidget {
               backgroundColor: Colors.transparent,
               icon: CustomItem(
                 index: 1,
-                icon: Icons.dining_sharp,
+                icon: Constants.dishNavbar,
                 text: '  Dish',
               ),
               label: ''),
           BottomNavigationBarItem(
               backgroundColor: Colors.transparent,
               icon: CustomItem(
-                icon: Icons.table_bar,
+                icon: Constants.tableNavbar,
                 text: ' Table',
                 index: 2,
               ),
@@ -49,7 +52,7 @@ class CustomNavigationBar extends StatelessWidget {
           BottomNavigationBarItem(
               backgroundColor: Colors.transparent,
               icon: CustomItem(
-                icon: Icons.person_outline_outlined,
+                icon: Constants.profileNavbar,
                 text: 'Profile',
                 index: 3,
               ),
@@ -60,23 +63,9 @@ class CustomNavigationBar extends StatelessWidget {
   }
 }
 
-class Navegacion extends ChangeNotifier {
-  int _paginaActual = 0;
-  final PageController _pageController = PageController();
-  int get paginaActual => _paginaActual;
-  set paginaActual(int valor) {
-    _paginaActual = valor;
-    _pageController.animateToPage(valor,
-        duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
-    notifyListeners();
-  }
-
-  PageController get pageController => _pageController;
-}
-
 class CustomItem extends StatelessWidget {
   final int index;
-  final IconData icon;
+  final String icon;
   final String text;
 
   const CustomItem(
@@ -103,7 +92,7 @@ class CustomItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(
+          Iconify(
             icon,
             size: 26,
             color: posicion.paginaActual == index
@@ -124,4 +113,18 @@ class CustomItem extends StatelessWidget {
       ),
     );
   }
+}
+
+class Navegacion extends ChangeNotifier {
+  int _paginaActual = 0;
+  final PageController _pageController = PageController();
+  int get paginaActual => _paginaActual;
+  set paginaActual(int valor) {
+    _paginaActual = valor;
+    _pageController.animateToPage(valor,
+        duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
+    notifyListeners();
+  }
+
+  PageController get pageController => _pageController;
 }

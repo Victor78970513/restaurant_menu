@@ -21,7 +21,7 @@ class TableScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(bottom: 30),
+                  padding: EdgeInsets.only(bottom: 35, top: 35),
                   child: Text('Select a table',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),

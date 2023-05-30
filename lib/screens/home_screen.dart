@@ -59,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<PlatosBloc, PlatosState>(
       builder: (context, state) {
-        print(state.platos);
         return Scaffold(
           body: SafeArea(
             child: Column(
@@ -131,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -191,11 +190,15 @@ class SearchContainer extends StatelessWidget {
               const SizedBox(width: 80),
               const Expanded(
                 child: TextField(
+                  showCursor: false,
                   decoration: InputDecoration(
+                      focusedBorder: InputBorder.none,
+                      border: InputBorder.none,
                       label: Text(
-                    'Search...',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                  )),
+                        'Search...',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                      )),
                 ),
               )
             ],
@@ -211,14 +214,15 @@ class SearchContainer extends StatelessWidget {
               decoration: BoxDecoration(
                   color: const Color(0xffE7E7E7),
                   borderRadius: BorderRadius.circular(30)),
-              child: const Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                      label: Text(
-                    'Search...',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                  )),
-                ),
+              child: const TextField(
+                showCursor: false,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    label: Text(
+                      'Search...',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    )),
               ),
             ),
             IconButton(

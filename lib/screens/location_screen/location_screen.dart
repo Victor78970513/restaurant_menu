@@ -69,13 +69,11 @@ class _LocationScreenState extends State<LocationScreen> {
                   Container(
                     height: 510,
                     width: 315,
-                    margin: EdgeInsets.only(bottom: 19),
+                    margin: const EdgeInsets.only(bottom: 19, top: 40),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: MapView(
                         initialLocation: locationstate.lastKnowLocation!,
-                        // initialLocation:
-                        //     LatLng(-16.4985065423747, -68.1396478468924),
                         polylines: polylines.values.toSet(),
                         markers: {
                           marker,
@@ -90,7 +88,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  SizedBox(height: 19),
+                  const SizedBox(height: 39),
                   CustomButtonWidget(
                     text: 'Let\'s Get Route',
                     icon: FontAwesomeIcons.map,

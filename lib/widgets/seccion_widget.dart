@@ -5,7 +5,7 @@ import 'package:restaurant_menu/screens/screens.dart';
 
 class SeccionPlato extends StatelessWidget {
   final ScrollController scrollController;
-  final List platos;
+  final List<PlatosModel> platos;
   final Widget header;
 
   const SeccionPlato({
@@ -56,11 +56,14 @@ class SeccionPlato extends StatelessWidget {
 
 class Plato extends StatelessWidget {
   final PlatosModel plato;
-  const Plato({super.key, required this.plato});
+  const Plato({
+    super.key,
+    required this.plato,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
@@ -103,12 +106,12 @@ class Plato extends StatelessWidget {
               margin: const EdgeInsets.only(top: 8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
-                child: const FadeInImage(
+                child: FadeInImage(
                   height: 60,
                   width: 90,
-                  placeholder: AssetImage('assets/jar-loading.gif'),
-                  image: AssetImage('assets/charque.jpg'),
-                  // image: NetworkImage(plato.imagen!),
+                  placeholder: const AssetImage('assets/jar-loading.gif'),
+                  image: NetworkImage(plato.imagen!),
+                  fit: BoxFit.fill,
                 ),
               ),
             )
@@ -132,7 +135,7 @@ class SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        InkWell(
+        GestureDetector(
           onTap: () => print(titulo),
           child: Container(
             margin: const EdgeInsets.only(left: 16, top: 19, bottom: 19),

@@ -30,7 +30,7 @@ class PlatosModel {
     data['descripcion'] = descripcion;
     data['precio'] = precio;
     data['id_seccion'] = idSeccion;
-    data['imagen    '] = imagen;
+    data['imagen'] = imagen;
     return data;
   }
 }

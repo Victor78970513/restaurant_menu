@@ -26,47 +26,56 @@ class DishDetailsScreen extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                    padding: const EdgeInsets.symmetric(vertical: 27),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: const FadeInImage(
-                          placeholder: AssetImage('assets/jar-loading.gif'),
-                          image: AssetImage('assets/charque.jpg'),
-                        ))),
-                Text(
-                  plato.nombre!.toUpperCase(),
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 30),
-                Text(plato.descripcion!,
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      padding: const EdgeInsets.symmetric(vertical: 27),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: FadeInImage(
+                            // height: 234,
+                            // width: 350,
+                            placeholder:
+                                const AssetImage('assets/jar-loading.gif'),
+                            image: NetworkImage(plato.imagen!),
+                          ))),
+                  Text(
+                    plato.nombre!.toUpperCase(),
                     style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                    textAlign: TextAlign.justify),
-                const SizedBox(height: 15),
-                const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [_PlateCounter(), _TotalPrice()]),
-                const SizedBox(height: 30),
-                CustomButtonWidget(
-                  text: 'Add to cart',
-                  width: 320.0,
-                  onTap: () {},
-                  icon: FontAwesomeIcons.shop,
-                )
-              ],
-            )),
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 30),
+                  Text(plato.descripcion!,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.justify),
+                  const SizedBox(height: 15),
+                  const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [_PlateCounter(), _TotalPrice()]),
+                  const SizedBox(height: 30),
+                  CustomButtonWidget(
+                    text: 'Add to cart',
+                    width: 320.0,
+                    onTap: () {},
+                    icon: FontAwesomeIcons.shop,
+                  ),
+                  const SizedBox(height: 30)
+                ],
+              )),
+        ),
       ),
     );
   }
@@ -102,7 +111,6 @@ class _PlateCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     final detailsProvider = Provider.of<DetailsProvider>(context);
     return Container(
-      width: 110,
       height: 50,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
@@ -146,8 +154,10 @@ class DetailsProvider extends ChangeNotifier {
   num? totalPrice = 0;
   int get cantidad => _cantidad;
   set cantidad(int valor) {
-    _cantidad = valor;
-    totalPrice = _cantidad * plato.precio!;
-    notifyListeners();
+    if (valor >= 0) {
+      _cantidad = valor;
+      totalPrice = _cantidad * plato.precio!;
+      notifyListeners();
+    }
   }
 }
