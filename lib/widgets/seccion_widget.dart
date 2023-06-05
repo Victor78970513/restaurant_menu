@@ -110,6 +110,7 @@ class Plato extends StatelessWidget {
                   height: 60,
                   width: 90,
                   placeholder: const AssetImage('assets/jar-loading.gif'),
+                  // image: AssetImage('assets/charque.jpg'),
                   image: NetworkImage(plato.imagen!),
                   fit: BoxFit.fill,
                 ),
